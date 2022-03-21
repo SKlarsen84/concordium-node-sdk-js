@@ -1,4 +1,3 @@
-import ConcordiumNodeClient from './client';
 import {
     getAccountTransactionHash,
     getAccountTransactionSignDigest,
@@ -11,7 +10,6 @@ import {
 import { sha256 } from './hash';
 import { getModuleBuffer } from './deserializeSchema';
 
-export { ConcordiumNodeClient };
 export * from './types';
 export {
     getAccountTransactionHash,
