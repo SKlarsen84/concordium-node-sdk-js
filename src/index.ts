@@ -48,3 +48,4 @@ export {
     getBakerId,
 } from './wallet/baker';
 export { deserializeContractState } from './deserialization';
+export * from './blockSummaryHelpers';
