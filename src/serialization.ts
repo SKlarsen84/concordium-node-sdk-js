@@ -24,6 +24,8 @@ import {
     CredentialDeploymentTransaction,
     UnsignedCredentialDeploymentInformation,
     CredentialDeploymentInfo,
+    BakerKeyProofs,
+    BakerVerifyKeys,
 } from './types';
 import { calculateEnergyCost } from './energyCost';
 import { countSignatures } from './util';
@@ -429,6 +431,22 @@ export function serializeCredentialDeploymentTransactionForSubmission(
         )
     );
     return Buffer.from(credentialDeploymentInfo.serializedTransaction, 'hex');
+}
+
+export function serializeBakerVerifyKeys(payload: BakerVerifyKeys): Buffer {
+    return Buffer.concat([
+        Buffer.from(payload.electionVerifyKey, 'hex'),
+        Buffer.from(payload.signatureVerifyKey, 'hex'),
+        Buffer.from(payload.aggregationVerifyKey, 'hex'),
+    ]);
+}
+
+export function serializeBakerKeyProofs(payload: BakerKeyProofs): Buffer {
+    return Buffer.concat([
+        Buffer.from(payload.proofSignature, 'hex'),
+        Buffer.from(payload.proofElection, 'hex'),
+        Buffer.from(payload.proofAggregation, 'hex'),
+    ]);
 }
 
 /**

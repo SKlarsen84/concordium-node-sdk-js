@@ -13,6 +13,8 @@ export function getNodeClient(address = '127.0.0.1'): ConcordiumNodeClient {
     const metadata = new Metadata();
     metadata.add('authentication', 'rpcadmin');
     return new ConcordiumNodeClient(
+        '127.0.0.1',
+        10001,
         address,
         10000,
         credentials.createInsecure(),

@@ -943,6 +943,21 @@ export interface AccountBakerDetailsV1 extends AccountBakerDetailsCommon {
     bakerPoolInfo: BakerPoolInfo;
 }
 
+
+export type BakerVerifyKeys = {
+    electionVerifyKey: string;
+    signatureVerifyKey: string;
+    aggregationVerifyKey: string;
+};
+
+export type BakerKeyProofs = {
+    proofElection: string;
+    proofSignature: string;
+    proofAggregation: string;
+};
+
+export interface AccountInfo {
+
 export type AccountBakerDetails = AccountBakerDetailsV0 | AccountBakerDetailsV1;
 
 export interface AccountDelegationDetails {
@@ -953,6 +968,7 @@ export interface AccountDelegationDetails {
 }
 
 interface AccountInfoCommon {
+
     accountNonce: bigint;
     accountAmount: bigint;
     accountIndex: bigint;
@@ -1147,6 +1163,25 @@ export interface UpdateCredentialsPayload {
     currentNumberOfCredentials: bigint;
 }
 
+export type AddBakerPayload = BakerVerifyKeys &
+    BakerKeyProofs & {
+        bakingStake: GtuAmount;
+        restakeEarnings: boolean;
+    };
+
+export type UpdateBakerKeysPayload = BakerVerifyKeys & BakerKeyProofs;
+
+// Remove baker's payload is always empty;
+export type RemoveBakerPayload = Record<string, never>;
+
+export type UpdateBakerStakePayload = {
+    stake: GtuAmount;
+};
+
+export type UpdateBakerRestakeEarningsPayload = {
+    restakeEarnings: boolean;
+};
+
 export type AccountTransactionPayload =
     | SimpleTransferPayload
     | SimpleTransferWithMemoPayload
@@ -1154,7 +1189,12 @@ export type AccountTransactionPayload =
     | DeployModulePayload
     | InitContractPayload
     | UpdateContractPayload
-    | UpdateCredentialsPayload;
+    | UpdateCredentialsPayload
+    | AddBakerPayload
+    | UpdateBakerKeysPayload
+    | UpdateBakerRestakeEarningsPayload
+    | RemoveBakerPayload
+    | UpdateBakerStakePayload;
 
 export interface AccountTransaction {
     type: AccountTransactionType;
