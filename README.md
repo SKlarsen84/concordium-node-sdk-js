@@ -14,7 +14,7 @@ The current node setup only allows for insecure connections, which can be set up
 The access is controlled by the credentials and the metadata.
 ```js
 import { credentials, Metadata } from "@grpc/grpc-js";
-import { ConcordiumNodeClient } from "@concordium/node-sdk";
+import { ConcordiumNodeClient } from "@concordium/node-sdk/client";
 
 const metadata = new Metadata();
 metadata.add("authentication", "rpcadmin");
@@ -28,7 +28,7 @@ const client = new ConcordiumNodeClient(
     15000           // timeout in ms
 );
 ```
-
+ -  Note that the client is only supported in a nodeJS environment, and will throw errors if imported in a web environment.
 ## Create a simple transfer
 The following example demonstrates how a simple transfer can be created.
 ```js

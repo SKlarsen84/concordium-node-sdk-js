@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+### Changed
+
+- The node client is no longer exported in the index, instead it is available on /client"
+
 ## 0.8.0 2022-03-15
 
 ### Added
